@@ -72,6 +72,10 @@ public class controller {
     @FXML
     private Label l;
     @FXML
+    private Label n1;
+    @FXML
+    private Label n2;
+    @FXML
     private Label p1;
     @FXML
     private Label p2;
@@ -197,6 +201,8 @@ public class controller {
     public void startgame(ActionEvent e){
 //        System.out.println(av1);
         create();
+        n1.setVisible(true);
+        n2.setVisible(true);
         c1.setVisible(true);
         tap.setText("Tap on dice");
         tap.setAlignment(Pos.CENTER);
@@ -241,6 +247,8 @@ public class controller {
         }
     }
     public void move(ActionEvent e) throws InterruptedException {
+        n1.setVisible(false);
+        n2.setVisible(false);
         show(pl1.isTurn(), pl2.isTurn());
         tap.setText("Waiting for game object encounter");
         int x = D.rolldie();

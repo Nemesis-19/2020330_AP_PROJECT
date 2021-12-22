@@ -143,5 +143,7 @@
             </Button>
          </children>
       </Group>
+      <Label fx:id="n1" layoutX="62.0" layoutY="526.0" text="P1" textFill="WHITE" visible="false" />
+      <Label fx:id="n2" layoutX="151.0" layoutY="526.0" text="P2" textFill="WHITE" visible="false" />
    </children>
 </AnchorPane>
