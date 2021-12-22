@@ -20,6 +20,7 @@ import static java.lang.System.exit;
 
 public class controller {
     private die D=new die();
+    private gameobjstr<gamechars> store;
     @FXML
     private Button dback;
     @FXML
@@ -76,13 +77,44 @@ public class controller {
 //    boolean p2turn=false;
 
     int tp1=0;
-    int sum1=0;
+//    int sum1=0;
     int tp2=0;
-    int sum2=0;
+//    int sum2=0;
     player pl1=new player(true,av1);
     player pl2=new player(false,av2);
+    private ladders cl(int x,int y,int c){
+        String s="l"+Integer.toString(c);
+        return new ladders(x,y,s);
+    }
+    private snake cs(int x,int y,int c){
+        String s="s"+Integer.toString(c);
+        return new snake(x,y,s);
+    }
+    private void create(){
+        store=new gameobjstr<>();
+        int c=0;
+        int t=0;
+        store.add(cl(4,45,c++));
+        store.add(cl(6,25,c++));
+        store.add(cl(40,77,c++));
+        store.add(cl(47,66,c++));
+        store.add(cl(50,93,c++));
+        store.add(cl(61,98,c++));
+        store.add(cl(68,87,c++));
+
+        store.add(cs(32,5,t++));
+        store.add(cs(43,17,t++));
+        store.add(cs(52,11,t++));
+        store.add(cs(57,24,t++));
+        store.add(cs(62,22,t++));
+        store.add(cs(91,51,t++));
+        store.add(cs(95,76,t++));
+        store.add(cs(99,10,t++));
 
 
+
+
+    }
     public void exit1(ActionEvent e){
         exit(0);
     }
@@ -1101,7 +1133,8 @@ public class controller {
                             av2.setX(x2=x2+18);
                             av2.setY(y2=y2+42.5);
                         }
-                        sum1=11;
+//                        sum1=11;
+                        pl1.setScore(11);
                     }
 //                    player2.toFront();
                     p2.setText("PLAYER 2: "+pl2.getScore());
@@ -1183,7 +1216,7 @@ public class controller {
                         pl2.setScore(22);
                     }
 //                    player2.toFront();
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
                     pl2.setTurn(false);
                     pl1.setTurn(true);
@@ -1208,7 +1241,7 @@ public class controller {
 //                        sum2=87;
                         pl2.setScore(87);
                     }
-                    if(sum2==62)
+                    if(pl2.getScore()==62)
                     {
 //                        player2.setCenterY(y2=y2+170);
                         for(int i=0; i<4; i++)

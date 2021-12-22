@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c130fa5-1d61-4095-949b-146aecdcf3a0" name="Changes" comment="moving debbuged">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/new_sl/die.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/new_sl/player.java" afterDir="false" />
+    <list default="true" id="6c130fa5-1d61-4095-949b-146aecdcf3a0" name="Changes" comment="player and die class added">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/new_sl/gamechars.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/new_sl/gameobjstr.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/new_sl/inter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/new_sl/controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/new_sl/controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/new_sl/controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/new_sl/controller.class" afterDir="false" />
@@ -19,6 +20,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -79,8 +81,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="gameobjstr" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.new_sl.gameobjstr" />
+      <module name="new_sl" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.new_sl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.gameobjstr" />
         <item itemvalue="Application.HelloApplication" />
         <item itemvalue="Application.die" />
       </list>
@@ -130,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640190997051</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="player and die class added">
+      <created>1640197274236</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1640197274236</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -149,6 +172,7 @@
     <MESSAGE value="better UI" />
     <MESSAGE value="styling" />
     <MESSAGE value="moving debbuged" />
-    <option name="LAST_COMMIT_MESSAGE" value="moving debbuged" />
+    <MESSAGE value="player and die class added" />
+    <option name="LAST_COMMIT_MESSAGE" value="player and die class added" />
   </component>
 </project>
