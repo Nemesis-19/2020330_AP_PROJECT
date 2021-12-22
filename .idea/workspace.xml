@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c130fa5-1d61-4095-949b-146aecdcf3a0" name="Changes" comment="better UI">
+    <list default="true" id="6c130fa5-1d61-4095-949b-146aecdcf3a0" name="Changes" comment="styling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/new_sl/controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/new_sl/controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/new_sl/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/new_sl/Main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/new_sl/back.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/new_sl/back.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/new_sl/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/new_sl/Main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/new_sl/back.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/new_sl/back.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/new_sl/controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/new_sl/controller.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +85,21 @@
       <option name="project" value="LOCAL" />
       <updated>1640137278900</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="styling">
+      <created>1640149587268</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1640149587268</updated>
+    </task>
+    <task id="LOCAL-00004" summary="styling">
+      <created>1640149612312</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1640149612312</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -107,6 +116,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="diffrent one" />
     <MESSAGE value="better UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="better UI" />
+    <MESSAGE value="styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="styling" />
   </component>
 </project>

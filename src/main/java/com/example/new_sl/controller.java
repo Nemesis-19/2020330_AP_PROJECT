@@ -194,9 +194,9 @@ public class controller {
 //                player1.setCenterY(y1=y1-70);
 //                player1.setCenterX(x1=x1+5);
 //                player1.toFront();
-                av1.setY(y1=y1-70);
+                av1.setY(y1=y1-60);
                 av1.setX(x1=x1+5);
-                
+
 
                 tp1++;
                 p1turn=false;
@@ -219,7 +219,7 @@ public class controller {
                     for(int i=0; i<x; i++)
                     {
                         av1.setX(x1=x1+72);
-                        
+
                     }
                     if(sum1==4)
                     {
@@ -228,8 +228,8 @@ public class controller {
                         for(int i=0; i<4; i++)
                         {
                             av1.setX(x1=x1+18);
-                            av1.setY(y1=y1-44);
-                            
+                            av1.setY(y1=y1-42);
+
                         }
                         sum1=45;
                     }
@@ -240,8 +240,8 @@ public class controller {
                         for(int i=0; i<2; i++)
                         {
                             av1.setX(x1=x1-36);
-                            av1.setY(y1=y1-38);
-                            
+                            av1.setY(y1=y1-40);
+
                         }
                         sum1=25;
                     }
@@ -260,13 +260,13 @@ public class controller {
                     for(int i=0; i<10-sum1+x; i++)
                     {
                         av1.setX(x1=x1+72);
-                        
+
                     }
                     av1.setY(y1=y1-45);
                     for(int i=0; i<sum1-11; i++)
                     {
                         av1.setX(x1=x1-72);
-                        
+
                     }
                     p1.setText("PLAYER 1: "+sum1);
                     tp1++;
@@ -280,7 +280,7 @@ public class controller {
                     for(int i=0; i<x; i++)
                     {
                         av1.setX(x1=x1-72);
-                        
+
                     }
                     p1.setText("PLAYER 1: "+sum1);
                     tp1++;
@@ -296,13 +296,13 @@ public class controller {
                     for(int i=0; i<20-sum1+x; i++)
                     {
                         av1.setX(x1=x1-72);
-                        
+
                     }
                     av1.setY(y1=y1-40);
                     for(int i=0; i<sum1-21; i++)
                     {
                         av1.setX(x1=x1+72);
-                        
+
                     }
                     p1.setText("PLAYER 1: "+sum1);
                     tp1++;
@@ -344,7 +344,7 @@ public class controller {
                         for(int i=0; i<4; i++)
                         {
                             av1.setX(x1=x1-72);
-                            av1.setY(y1=y1+32.5);
+                            av1.setY(y1=y1+30);
                         }
                         sum1=5;
                     }
@@ -369,7 +369,7 @@ public class controller {
                         for(int i=0; i<3; i++)
                         {
                             av1.setX(x1=x1+72);
-                            av1.setY(y1=y1-56);
+                            av1.setY(y1=y1-58);
                         }
                         sum1=77;
                     }
@@ -380,7 +380,7 @@ public class controller {
                         for(int i=0; i<4; i++)
                         {
                             av1.setX(x1=x1-72);
-                            av1.setY(y1=y1+31);
+                            av1.setY(y1=y1+30);
                         }
                         sum1=5;
                     }
@@ -400,7 +400,7 @@ public class controller {
                     {
                         av1.setX(x1=x1-72);
                     }
-                    av1.setY(y1=y1-40);
+                    av1.setY(y1=y1-44);
                     for(int i=0; i<sum1-41; i++)
                     {
                         av1.setX(x1=x1+72);
@@ -437,7 +437,7 @@ public class controller {
                         for(int i=0; i<2; i++)
                         {
                             av1.setX(x1=x1-36);
-                            av1.setY(y1=y1-42.5);
+                            av1.setY(y1=y1-43);
                         }
                         sum1=66;
                     }
@@ -452,7 +452,7 @@ public class controller {
                         }
                         sum1=93;
                     }
-                    if(sum2==43)
+                    if(sum1==43)
                     {
 //                        player2.setCenterX(x2=x2+72);
 //                        player2.setCenterY(y2=y2+120);
@@ -461,7 +461,7 @@ public class controller {
                             av1.setX(x1=x1+18);
                             av1.setY(y1=y1+30);
                         }
-                        sum2=17;
+                        sum1=17;
                     }
 //                    player1.toFront();
                     p1.setText("PLAYER 1: "+sum1);
@@ -525,7 +525,7 @@ public class controller {
 //                        player1.setCenterY(y1=y1+120);
                         for(int i=0; i<3; i++)
                         {
-                            av1.setY(y1=y1+40);
+                            av1.setY(y1=y1+42);
                         }
                         sum1=24;
                     }
@@ -591,7 +591,7 @@ public class controller {
                         for(int i=0; i<2; i++)
                         {
                             av1.setX(x1=x1-36);
-                            av1.setY(y1=y1-42.5);
+                            av1.setY(y1=y1-45);
                         }
                         sum1=87;
                     }
@@ -653,7 +653,7 @@ public class controller {
                     {
                         av1.setX(x1=x1-72);
                     }
-                    av1.setY(y1=y1-40);
+                    av1.setY(y1=y1-44);
                     for(int i=0; i<sum1-81; i++)
                     {
                         av1.setX(x1=x1+72);
@@ -707,7 +707,7 @@ public class controller {
                         for(int i=0; i<2; i++)
                         {
                             av1.setX(x1=x1-36);
-                            av1.setY(y1=y1+42.5);
+                            av1.setY(y1=y1+45);
                         }
                         sum1=76;
                     }
@@ -732,18 +732,18 @@ public class controller {
                         for(int i=0; i<2; i++)
                         {
                             av1.setX(x1=x1-36);
-                            av1.setY(y1=y1+42.5);
+                            av1.setY(y1=y1+45);
                         }
                         sum1=76;
                     }
                     if(sum1==99)
                     {
 //                        player1.setCenterY(y1=y1+360);
-//                        player1.setCenterX(x1=x1-72*8);
+//                        player1.setCenterX(x1=x1+72*8);
                         for(int i=0; i<8; i++)
                         {
-                            av1.setY(y1=y1+45);
-                            av1.setX(x1=x1-72);
+                            av1.setY(y1=y1+48);
+                            av1.setX(x1=x1+72.5);
                         }
                         sum1=10;
                     }
@@ -776,7 +776,7 @@ public class controller {
 //                player2.setCenterY(y2=y2-70);
 //                player2.setCenterX(x2=x2+5);
 //                player2.toFront();
-                av2.setY(y2=y2-70);
+                av2.setY(y2=y2-60);
                 av2.setX(x2=x2+5);
                 tp2++;
                 p2turn=false;
@@ -807,7 +807,7 @@ public class controller {
                         for(int i=0; i<4; i++)
                         {
                             av2.setX(x2=x2+18);
-                            av2.setY(y2=y2-44);
+                            av2.setY(y2=y2-42);
                         }
                         sum2=45;
                     }
@@ -818,7 +818,7 @@ public class controller {
                         for(int i=0; i<2; i++)
                         {
                             av2.setX(x2=x2-36);
-                            av2.setY(y2=y2-38);
+                            av2.setY(y2=y2-40);
                         }
                         sum2=25;
                     }
@@ -867,14 +867,16 @@ public class controller {
 //                    player2.setCenterY(y2=y2-40);
 //                    player2.setCenterX(x2=x2+72*(sum2-21));
 //                    player2.toFront();
-                    for(int i=0; i<20-sum2+x; i++);
+                    for(int i=0; i<20-sum2+x; i++)
                     {
                         av2.setX(x2=x2-72);
+
                     }
                     av2.setY(y2=y2-40);
                     for(int i=0; i<sum2-21; i++)
                     {
                         av2.setX(x2=x2+72);
+
                     }
                     p2.setText("PLAYER 2: "+sum2);
                     tp2++;
@@ -916,7 +918,7 @@ public class controller {
                         for(int i=0; i<4; i++)
                         {
                             av2.setX(x2=x2-72);
-                            av2.setY(y2=y2+32.5);
+                            av2.setY(y2=y2+30);
                         }
                         sum2=5;
                     }
@@ -940,8 +942,8 @@ public class controller {
 //                        player2.setCenterY(y2 = y2 - 170);
                         for(int i=0; i<3; i++)
                         {
-                            av1.setX(x1=x1+72);
-                            av1.setY(y1=y1-56);
+                            av2.setX(x2=x2+72);
+                            av2.setY(y2=y2-58);
                         }
                         sum2=77;
                     }
@@ -951,8 +953,8 @@ public class controller {
 //                        player2.setCenterY(y2 = y2 + 130);
                         for(int i=0; i<4; i++)
                         {
-                            av1.setX(x1=x1-72);
-                            av1.setY(y1=y1+31);
+                            av2.setX(x2=x2-72);
+                            av2.setY(y2=y2+30);
                         }
                         sum2=5;
                     }
@@ -972,7 +974,7 @@ public class controller {
                     {
                         av2.setX(x2=x2-72);
                     }
-                    av2.setY(y2=y2-40);
+                    av2.setY(y2=y2-44);
                     for(int i=0; i<sum2-41; i++)
                     {
                         av2.setX(x2=x2+72);
@@ -1009,7 +1011,7 @@ public class controller {
                         for(int i=0; i<2; i++)
                         {
                             av2.setX(x2=x2-36);
-                            av2.setY(y2=y2-42.5);
+                            av2.setY(y2=y2-43);
                         }
                         sum2=66;
                     }
@@ -1097,7 +1099,7 @@ public class controller {
 //                        player2.setCenterY(y2=y2+120);
                         for(int i=0; i<3; i++)
                         {
-                            av2.setY(y2=y2+40);
+                            av2.setY(y2=y2+42);
                         }
                         sum2=24;
                     }
@@ -1129,7 +1131,7 @@ public class controller {
                         for(int i=0; i<3; i++)
                         {
                             av2.setX(x2=x2+48);
-                            av2.setY(y2=y2-40);
+                            av2.setY(y2=y2-44);
                         }
                         sum2=98;
                     }
@@ -1163,7 +1165,7 @@ public class controller {
                         for(int i=0; i<2; i++)
                         {
                             av2.setX(x2=x2-36);
-                            av2.setY(y2=y2-42.5);
+                            av2.setY(y2=y2-45);
                         }
                         sum2=87;
                     }
@@ -1225,7 +1227,7 @@ public class controller {
                     {
                         av2.setX(x2=x2-72);
                     }
-                    av2.setY(y2=y2-40);
+                    av2.setY(y2=y2-44);
                     for(int i=0; i<sum2-81; i++)
                     {
                         av2.setX(x2=x2+72);
@@ -1279,7 +1281,7 @@ public class controller {
                         for(int i=0; i<2; i++)
                         {
                             av2.setX(x2=x2-36);
-                            av2.setY(y2=y2+42.5);
+                            av2.setY(y2=y2+45);
                         }
                         sum2=76;
                     }
@@ -1304,7 +1306,7 @@ public class controller {
                         for(int i=0; i<2; i++)
                         {
                             av2.setX(x2=x2-36);
-                            av2.setY(y2=y2+42.5);
+                            av2.setY(y2=y2+45);
                         }
                         sum2=76;
                     }
@@ -1314,8 +1316,8 @@ public class controller {
 //                        player2.setCenterX(x2=x2+72*8);
                         for(int i=0; i<8; i++)
                         {
-                            av2.setY(y2=y2+45);
-                            av2.setX(x2=x2-72);
+                            av2.setY(y2=y2+48);
+                            av2.setX(x2=x2+72.5);
                         }
                         sum2=10;
                     }
@@ -1343,3 +1345,21 @@ public class controller {
         }
     }
 }
+//class player{
+//    private int score;
+//    private boolean turn;
+//    private final ImageView img;
+//    player(int s,boolean t,ImageView img){
+//        this.score=s;
+//        this.turn=t;
+//        this.img=img;
+//    }
+//
+//    public void setScore(int score) {
+//        this.score = score;
+//    }
+//
+//    public void setTurn(boolean turn) {
+//        this.turn = turn;
+//    }
+//}
