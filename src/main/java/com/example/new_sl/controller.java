@@ -32,6 +32,7 @@ public class controller {
     @FXML ImageView bcimg;
     @FXML
     private Button startgame;
+
     @FXML
     private Label l1;
     @FXML
@@ -76,7 +77,6 @@ public class controller {
     int sum1=0;
     int tp2=0;
     int sum2=0;
-
 
     public void exit1(ActionEvent e){
         exit(0);
