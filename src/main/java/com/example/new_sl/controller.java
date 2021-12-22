@@ -2,6 +2,7 @@ package com.example.new_sl;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -14,9 +15,29 @@ import java.lang.Math;
 
 import java.util.Random;
 
+import static java.lang.System.exit;
+
 public class controller {
     @FXML
-    private Label welcome;
+    private Button dback;
+    @FXML
+    private Button exit;
+    @FXML
+    private Group grp;
+
+    @FXML
+    private Button bkbtn;
+    @FXML
+    private ImageView brc;
+    @FXML ImageView bcimg;
+    @FXML
+    private Button startgame;
+    @FXML
+    private Label l1;
+    @FXML
+    private Label l2;
+    @FXML
+    private Label tap;
     @FXML
     private ImageView back;
     @FXML
@@ -56,7 +77,84 @@ public class controller {
     int tp2=0;
     int sum2=0;
 
+
+    public void exit1(ActionEvent e){
+        exit(0);
+    }
+    public void dbback(ActionEvent e){
+        p1.setDisable(false);
+        p2.setDisable(false);
+        l.setDisable(false);
+        img.setDisable(false);
+        dice.setDisable(false);
+        rect.setDisable(false);
+        l1.setDisable(false);
+        l2.setDisable(false);
+        button.setDisable(false);
+        av1.setDisable(false);
+        av2.setDisable(false);
+        tap.setDisable(false);
+        grp.setDisable(true);
+        grp.setVisible(false);
+    }
+
+
+    public void backbutton(ActionEvent e){
+        p1.setDisable(true);
+        p2.setDisable(true);
+        l.setDisable(true);
+        img.setDisable(true);
+        dice.setDisable(true);
+        rect.setDisable(true);
+        l1.setDisable(true);
+        l2.setDisable(true);
+        button.setDisable(true);
+        av1.setDisable(true);
+        av2.setDisable(true);
+        tap.setDisable(true);
+        grp.setDisable(false);
+        grp.setVisible(true);
+
+    }
+    public void startgame(ActionEvent e){
+        bkbtn.setVisible(true);
+        p1.setVisible(true);
+        p2.setVisible(true);
+        p2.setDisable(true);
+        l2.setDisable(true);
+        l.setVisible(true);
+        img.setVisible(true);
+        dice.setVisible(true);
+        rect.setVisible(true);
+        l1.setVisible(true);
+        l2.setVisible(true);
+        button.setVisible(true);
+        av1.setVisible(true);
+        av2.setVisible(true);
+        tap.setVisible(true);
+        startgame.setVisible(false);
+        brc.setVisible(true);
+        bcimg.setVisible(true);
+
+    }
+
+    private void show(boolean t1,boolean t2){
+        if(t1){
+            l2.setDisable(false);
+            p2.setDisable(false);
+            l1.setDisable(true);
+            p1.setDisable(true);
+        }
+        else {
+
+            l1.setDisable(false);
+            p1.setDisable(false);
+            l2.setDisable(true);
+            p2.setDisable(true);
+        }
+    }
     public void move(ActionEvent e) throws InterruptedException {
+        show(p1turn,p2turn);
         int x = (int)(Math.random()*(6)+1);
         l.setText("Number = "+Integer.toString(x));
         Image im=new Image("file:src\\main\\resources\\com\\example\\new_sl\\1d.jpg");
@@ -98,6 +196,7 @@ public class controller {
 //                player1.toFront();
                 av1.setY(y1=y1-70);
                 av1.setX(x1=x1+5);
+                
 
                 tp1++;
                 p1turn=false;
@@ -120,6 +219,7 @@ public class controller {
                     for(int i=0; i<x; i++)
                     {
                         av1.setX(x1=x1+72);
+                        
                     }
                     if(sum1==4)
                     {
@@ -129,6 +229,7 @@ public class controller {
                         {
                             av1.setX(x1=x1+18);
                             av1.setY(y1=y1-44);
+                            
                         }
                         sum1=45;
                     }
@@ -140,6 +241,7 @@ public class controller {
                         {
                             av1.setX(x1=x1-36);
                             av1.setY(y1=y1-38);
+                            
                         }
                         sum1=25;
                     }
@@ -158,11 +260,13 @@ public class controller {
                     for(int i=0; i<10-sum1+x; i++)
                     {
                         av1.setX(x1=x1+72);
+                        
                     }
                     av1.setY(y1=y1-45);
                     for(int i=0; i<sum1-11; i++)
                     {
                         av1.setX(x1=x1-72);
+                        
                     }
                     p1.setText("PLAYER 1: "+sum1);
                     tp1++;
@@ -176,6 +280,7 @@ public class controller {
                     for(int i=0; i<x; i++)
                     {
                         av1.setX(x1=x1-72);
+                        
                     }
                     p1.setText("PLAYER 1: "+sum1);
                     tp1++;
@@ -191,11 +296,13 @@ public class controller {
                     for(int i=0; i<20-sum1+x; i++)
                     {
                         av1.setX(x1=x1-72);
+                        
                     }
                     av1.setY(y1=y1-40);
                     for(int i=0; i<sum1-21; i++)
                     {
                         av1.setX(x1=x1+72);
+                        
                     }
                     p1.setText("PLAYER 1: "+sum1);
                     tp1++;

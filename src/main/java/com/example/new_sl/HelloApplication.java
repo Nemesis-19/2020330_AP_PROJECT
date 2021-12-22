@@ -19,7 +19,8 @@ public class HelloApplication extends Application {
         stage.setTitle("Snakes & Ladders");
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.getIcons().add(new Image("file:C:\\Users\\Satyam Arora\\IdeaProjects\\new_sl\\src\\main\\resources\\com\\example\\new_sl\\slb1.jpg"));
+        stage.getIcons().add(new Image("file:src\\main\\resources\\com\\example\\new_sl\\slb1.jpg"));
+        scene.getStylesheets().add(getClass().getResource("back.css").toExternalForm());
         stage.show();
     }
 
