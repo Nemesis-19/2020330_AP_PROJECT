@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
+import javax.crypto.spec.PSource;
 import java.lang.Math;
 
 import java.util.Random;
@@ -18,6 +19,7 @@ import java.util.Random;
 import static java.lang.System.exit;
 
 public class controller {
+    private die D=new die();
     @FXML
     private Button dback;
     @FXML
@@ -42,9 +44,9 @@ public class controller {
     @FXML
     private ImageView back;
     @FXML
-    ImageView av1;
+    private ImageView av1;
     @FXML
-    ImageView av2;
+    private ImageView av2;
     @FXML
     private Rectangle rect;
     @FXML
@@ -70,13 +72,16 @@ public class controller {
     @FXML
     private Button button;
 
-    boolean p1turn=true;
-    boolean p2turn=false;
+//    boolean p1turn=true;
+//    boolean p2turn=false;
 
     int tp1=0;
     int sum1=0;
     int tp2=0;
     int sum2=0;
+    player pl1=new player(true,av1);
+    player pl2=new player(false,av2);
+
 
     public void exit1(ActionEvent e){
         exit(0);
@@ -117,6 +122,7 @@ public class controller {
 
     }
     public void startgame(ActionEvent e){
+//        System.out.println(av1);
         bkbtn.setVisible(true);
         p1.setVisible(true);
         p2.setVisible(true);
@@ -154,8 +160,8 @@ public class controller {
         }
     }
     public void move(ActionEvent e) throws InterruptedException {
-        show(p1turn,p2turn);
-        int x = (int)(Math.random()*(6)+1);
+        show(pl1.isTurn(), pl2.isTurn());
+        int x = D.rolldie();
         l.setText("Number = "+Integer.toString(x));
         Image im=new Image("file:src\\main\\resources\\com\\example\\new_sl\\1d.jpg");
         if(x==1)
@@ -187,7 +193,7 @@ public class controller {
             im=new Image("file:src\\main\\resources\\com\\example\\new_sl\\6d.jpg");
             dice.setImage(im);
         }
-        if(p1turn)
+        if(pl1.isTurn())
         {
             if(tp1==0&&x==1)
             {
@@ -199,20 +205,20 @@ public class controller {
 
 
                 tp1++;
-                p1turn=false;
-                p2turn=true;
-                sum1=sum1+x;
-                p1.setText("PLAYER 1: "+sum1);
+                pl1.setTurn(false);
+                pl2.setTurn(true);
+                pl1.setScore(pl1.getScore()+x);
+                p1.setText("PLAYER 1: "+pl1.getScore());
             }
             else if(tp1==0&&x>1)
             {
-                p1turn=false;
-                p2turn=true;
+                pl1.setTurn(false);
+                pl2.setTurn(true);
             }
             else if(tp1>0)
             {
-                sum1=sum1+x;
-                if(sum1<=10) {
+                pl1.setScore(pl1.getScore()+x);
+                if(pl1.getScore()<=10) {
 
 //                    player1.setCenterX(x1 = x1 + 72 * x);
 //                    player1.toFront();
@@ -221,7 +227,7 @@ public class controller {
                         av1.setX(x1=x1+72);
 
                     }
-                    if(sum1==4)
+                    if(pl1.getScore()==4)
                     {
 //                        player1.setCenterX(x1 = x1 + 72);
 //                        player1.setCenterY(y1 = y1 - 170);
@@ -231,9 +237,9 @@ public class controller {
                             av1.setY(y1=y1-42);
 
                         }
-                        sum1=45;
+                        pl1.setScore(45);
                     }
-                    if(sum1==6)
+                    if(pl1.getScore()==6)
                     {
 //                        player1.setCenterX(x1 = x1 - 72);
 //                        player1.setCenterY(y1 = y1 - 75);
@@ -243,37 +249,37 @@ public class controller {
                             av1.setY(y1=y1-40);
 
                         }
-                        sum1=25;
+                        pl1.setScore(25);
                     }
 //                    player1.toFront();
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1>10&&sum1<=20&&sum1-x<=10)
+                else if(pl1.getScore()>10&&pl1.getScore()<=20&&pl1.getScore()-x<=10)
                 {
 //                    player1.setCenterX(x1=x1+72*(10-sum1+x));
 //                    player1.setCenterY(y1=y1-45);
 //                    player1.setCenterX(x1=x1-72*(sum1-11));
 //                    player1.toFront();
-                    for(int i=0; i<10-sum1+x; i++)
+                    for(int i=0; i<10-pl1.getScore()+x; i++)
                     {
                         av1.setX(x1=x1+72);
 
                     }
                     av1.setY(y1=y1-45);
-                    for(int i=0; i<sum1-11; i++)
+                    for(int i=0; i<pl1.getScore()-11; i++)
                     {
                         av1.setX(x1=x1-72);
 
                     }
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1<=20)
+                else if(pl1.getScore()<=20)
                 {
 //                    player1.setCenterX(x1=x1-72*x);
 //                    player1.toFront();
@@ -282,34 +288,34 @@ public class controller {
                         av1.setX(x1=x1-72);
 
                     }
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1>20&&sum1<=30&&sum1-x<=20)
+                else if(pl1.getScore()>20&&pl1.getScore()<=30&&pl1.getScore()-x<=20)
                 {
 //                    player1.setCenterX(x1=x1-72*(20-sum1+x));
 //                    player1.setCenterY(y1=y1-40);
 //                    player1.setCenterX(x1=x1+72*(sum1-21));
 //                    player1.toFront();
-                    for(int i=0; i<20-sum1+x; i++)
+                    for(int i=0; i<20-pl1.getScore()+x; i++)
                     {
                         av1.setX(x1=x1-72);
 
                     }
                     av1.setY(y1=y1-40);
-                    for(int i=0; i<sum1-21; i++)
+                    for(int i=0; i<pl1.getScore()-21; i++)
                     {
                         av1.setX(x1=x1+72);
 
                     }
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1<=30)
+                else if(pl1.getScore()<=30)
                 {
 //                    player1.setCenterX(x1=x1+72*x);
 //                    player1.toFront();
@@ -317,27 +323,27 @@ public class controller {
                     {
                         av1.setX(x1=x1+72);
                     }
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1>30&&sum1<=40&&sum1-x<=30)
+                else if(pl1.getScore()>30&&pl1.getScore()<=40&&pl1.getScore()-x<=30)
                 {
 //                    player1.setCenterX(x1=x1+72*(30-sum1+x));
 //                    player1.setCenterY(y1=y1-40);
 //                    player1.setCenterX(x1=x1-72*(sum1-31));
 //                    player1.toFront();
-                    for(int i=0; i<30-sum1+x; i++)
+                    for(int i=0; i<30-pl1.getScore()+x; i++)
                     {
                         av1.setX(x1=x1+72);
                     }
                     av1.setY(y1=y1-40);
-                    for(int i=0; i<sum1-31; i++)
+                    for(int i=0; i<pl1.getScore()-31; i++)
                     {
                         av1.setX(x1=x1-72);
                     }
-                    if(sum1==32)
+                    if(pl1.getScore()==32)
                     {
 //                        player1.setCenterX(x1=x1-72*4);
 //                        player1.setCenterY(y1 = y1 + 130);
@@ -346,15 +352,16 @@ public class controller {
                             av1.setX(x1=x1-72);
                             av1.setY(y1=y1+30);
                         }
-                        sum1=5;
+
+                        pl1.setScore(5);
                     }
 //                    player1.toFront();
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1<=40)
+                else if(pl1.getScore()<=40)
                 {
 //                    player1.setCenterX(x1=x1-72*x);
 //                    player1.toFront();
@@ -362,7 +369,7 @@ public class controller {
                     {
                         av1.setX(x1=x1-72);
                     }
-                    if(sum1==40)
+                    if(pl1.getScore()==40)
                     {
 //                        player1.setCenterX(x1=x1+72*3);
 //                        player1.setCenterY(y1 = y1 - 170);
@@ -371,9 +378,10 @@ public class controller {
                             av1.setX(x1=x1+72);
                             av1.setY(y1=y1-58);
                         }
-                        sum1=77;
+
+                        pl1.setScore(77);
                     }
-                    if(sum1==32)
+                    if(pl1.getScore()==32)
                     {
 //                        player1.setCenterX(x1=x1-72*4);
 //                        player1.setCenterY(y1 = y1 + 130);
@@ -382,30 +390,31 @@ public class controller {
                             av1.setX(x1=x1-72);
                             av1.setY(y1=y1+30);
                         }
-                        sum1=5;
+
+                        pl1.setScore(5);
                     }
 //                    player1.toFront();
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1>40&&sum1<=50&&sum1-x<=40)
+                else if(pl1.getScore()>40&&pl1.getScore()<=50&&pl1.getScore()-x<=40)
                 {
 //                    player1.setCenterX(x1=x1-72*(40-sum1+x));
 //                    player1.setCenterY(y1=y1-40);
 //                    player1.setCenterX(x1=x1+72*(sum1-41));
 //                    player1.toFront();
-                    for(int i=0; i<40-sum1+x; i++)
+                    for(int i=0; i<40-pl1.getScore()+x; i++)
                     {
                         av1.setX(x1=x1-72);
                     }
                     av1.setY(y1=y1-44);
-                    for(int i=0; i<sum1-41; i++)
+                    for(int i=0; i<pl1.getScore()-41; i++)
                     {
                         av1.setX(x1=x1+72);
                     }
-                    if(sum1==43)
+                    if(pl1.getScore()==43)
                     {
 //                        player1.setCenterX(x1=x1+72);
 //                        player1.setCenterY(y1=y1+120);
@@ -414,15 +423,16 @@ public class controller {
                             av1.setX(x1=x1+18);
                             av1.setY(y1=y1+30);
                         }
-                        sum1=17;
+
+                        pl1.setScore(17);
                     }
 //                    player1.toFront();
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1<=50)
+                else if(pl1.getScore()<=50)
                 {
 //                    player1.setCenterX(x1=x1+72*x);
 //                    player1.toFront();
@@ -430,7 +440,7 @@ public class controller {
                     {
                         av1.setX(x1=x1+72);
                     }
-                    if(sum1==47)
+                    if(pl1.getScore()==47)
                     {
 //                        player1.setCenterX(x1=x1-72);
 //                        player1.setCenterY(y1=y1-85);
@@ -439,9 +449,10 @@ public class controller {
                             av1.setX(x1=x1-36);
                             av1.setY(y1=y1-43);
                         }
-                        sum1=66;
+
+                        pl1.setScore(66);
                     }
-                    if(sum1==50)
+                    if(pl1.getScore()==50)
                     {
 //                        player1.setCenterX(x1=x1-72*2);
 //                        player1.setCenterY(y1=y1-212);
@@ -450,9 +461,10 @@ public class controller {
                             av1.setX(x1=x1-48);
                             av1.setY(y1=y1-73);
                         }
-                        sum1=93;
+
+                        pl1.setScore(93);
                     }
-                    if(sum1==43)
+                    if(pl1.getScore()==43)
                     {
 //                        player2.setCenterX(x2=x2+72);
 //                        player2.setCenterY(y2=y2+120);
@@ -461,30 +473,31 @@ public class controller {
                             av1.setX(x1=x1+18);
                             av1.setY(y1=y1+30);
                         }
-                        sum1=17;
+
+                        pl1.setScore(17);
                     }
 //                    player1.toFront();
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1>50&&sum1<=60&&sum1-x<=50)
+                else if(pl1.getScore()>50&&pl1.getScore()<=60&&pl1.getScore()-x<=50)
                 {
 //                    player1.setCenterX(x1=x1+72*(50-sum1+x));
 //                    player1.setCenterY(y1=y1-42);
 //                    player1.setCenterX(x1=x1-72*(sum1-51));
 //                    player1.toFront();
-                    for(int i=0; i<50-sum1+x; i++)
+                    for(int i=0; i<50-pl1.getScore()+x; i++)
                     {
                         av1.setX(x1=x1+72);
                     }
                     av1.setY(y1=y1-40);
-                    for(int i=0; i<sum1-51; i++)
+                    for(int i=0; i<pl1.getScore()-51; i++)
                     {
                         av1.setX(x1=x1-72);
                     }
-                    if(sum1==52)
+                    if(pl1.getScore()==52)
                     {
 //                        player1.setCenterX(x1=x1+72);
 //                        player1.setCenterY(y1=y1+170);
@@ -493,15 +506,16 @@ public class controller {
                             av1.setX(x1=x1+18);
                             av1.setY(y1=y1+42.5);
                         }
-                        sum1=11;
+
+                        pl1.setScore(11);
                     }
 //                    player1.toFront();
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1<=60)
+                else if(pl1.getScore()<=60)
                 {
 //                    player1.setCenterX(x1=x1-72*x);
 //                    player1.toFront();
@@ -509,7 +523,7 @@ public class controller {
                     {
                         av1.setX(x1=x1-72);
                     }
-                    if(sum1==52)
+                    if(pl1.getScore()==52)
                     {
 //                        player1.setCenterX(x1=x1+72);
 //                        player1.setCenterY(y1=y1+170);
@@ -518,39 +532,41 @@ public class controller {
                             av1.setX(x1=x1+18);
                             av1.setY(y1=y1+42.5);
                         }
-                        sum1=11;
+
+                        pl1.setScore(11);
                     }
-                    if(sum1==57)
+                    if(pl1.getScore()==57)
                     {
 //                        player1.setCenterY(y1=y1+120);
                         for(int i=0; i<3; i++)
                         {
                             av1.setY(y1=y1+42);
                         }
-                        sum1=24;
+
+                        pl1.setScore(24);
                     }
 //                    player1.toFront();
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1>60&&sum1<=70&&sum1-x<=60)
+                else if(pl1.getScore()>60&&pl1.getScore()<=70&&pl1.getScore()-x<=60)
                 {
 //                    player1.setCenterX(x1=x1-72*(60-sum1+x));
 //                    player1.setCenterY(y1=y1-40);
 //                    player1.setCenterX(x1=x1+72*(sum1-61));
 //                    player1.toFront();
-                    for(int i=0; i<60-sum1+x; i++)
+                    for(int i=0; i<60-pl1.getScore()+x; i++)
                     {
                         av1.setX(x1=x1-72);
                     }
                     av1.setY(y1=y1-40);
-                    for(int i=0; i<sum1-61; i++)
+                    for(int i=0; i<pl1.getScore()-61; i++)
                     {
                         av1.setX(x1=x1+72);
                     }
-                    if(sum1==61)
+                    if(pl1.getScore()==61)
                     {
 //                        player1.setCenterX(x1=x1+72*2);
 //                        player1.setCenterY(y1=y1-120);
@@ -559,24 +575,25 @@ public class controller {
                             av1.setX(x1=x1+48);
                             av1.setY(y1=y1-44);
                         }
-                        sum1=98;
+                        pl1.setScore(98);
                     }
-                    if(sum1==62)
+                    if(pl1.getScore()==62)
                     {
 //                        player1.setCenterY(y1=y1+170);
                         for(int i=0; i<4; i++)
                         {
                             av1.setY(y1=y1+42.5);
                         }
-                        sum1=22;
+
+                        pl1.setScore(22);
                     }
 //                    player1.toFront();
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1<=70)
+                else if(pl1.getScore()<=70)
                 {
 //                    player1.setCenterX(x1=x1+72*x);
 //                    player1.toFront();
@@ -584,7 +601,7 @@ public class controller {
                     {
                         av1.setX(x1=x1+72);
                     }
-                    if(sum1==68)
+                    if(pl1.getScore()==68)
                     {
 //                        player1.setCenterX(x1=x1-72);
 //                        player1.setCenterY(y1=y1+85);
@@ -593,44 +610,46 @@ public class controller {
                             av1.setX(x1=x1-36);
                             av1.setY(y1=y1-45);
                         }
-                        sum1=87;
+
+                        pl1.setScore(87);
                     }
-                    if(sum1==62)
+                    if(pl1.getScore()==62)
                     {
 //                        player1.setCenterY(y1=y1+170);
                         for(int i=0; i<4; i++)
                         {
                             av1.setY(y1=y1+42.5);
                         }
-                        sum1=22;
+
+                        pl1.setScore(22);
                     }
 //                    player1.toFront();
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1>70&&sum1<=80&&sum1-x<=70)
+                else if(pl1.getScore()>70&&pl1.getScore()<=80&&pl1.getScore()-x<=70)
                 {
 //                    player1.setCenterX(x1=x1+72*(70-sum1+x));
 //                    player1.setCenterY(y1=y1-45);
 //                    player1.setCenterX(x1=x1-72*(sum1-71));
 //                    player1.toFront();
-                    for(int i=0; i<70-sum1+x; i++)
+                    for(int i=0; i<70-pl1.getScore()+x; i++)
                     {
                         av1.setX(x1=x1+72);
                     }
                     av1.setY(y1=y1-45);
-                    for(int i=0; i<sum1-71; i++)
+                    for(int i=0; i<pl1.getScore()-71; i++)
                     {
                         av1.setX(x1=x1-72);
                     }
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1<=80)
+                else if(pl1.getScore()<=80)
                 {
 //                    player1.setCenterX(x1=x1-72*x);
 //                    player1.toFront();
@@ -638,32 +657,32 @@ public class controller {
                     {
                         av1.setX(x1=x1-72);
                     }
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1>80&&sum1<=90&&sum1-x<=80)
+                else if(pl1.getScore()>80&&pl1.getScore()<=90&&pl1.getScore()-x<=80)
                 {
 //                    player1.setCenterX(x1=x1-72*(80-sum1+x));
 //                    player1.setCenterY(y1=y1-45);
 //                    player1.setCenterX(x1=x1+72*(sum1-81));
 //                    player1.toFront();
-                    for(int i=0; i<80-sum1+x; i++)
+                    for(int i=0; i<80-pl1.getScore()+x; i++)
                     {
                         av1.setX(x1=x1-72);
                     }
                     av1.setY(y1=y1-44);
-                    for(int i=0; i<sum1-81; i++)
+                    for(int i=0; i<pl1.getScore()-81; i++)
                     {
                         av1.setX(x1=x1+72);
                     }
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1<=90)
+                else if(pl1.getScore()<=90)
                 {
 //                    player1.setCenterX(x1=x1+72*x);
 //                    player1.toFront();
@@ -671,36 +690,37 @@ public class controller {
                     {
                         av1.setX(x1=x1+72);
                     }
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1>90&&sum1<=100&&sum1-x<=90)
+                else if(pl1.getScore()>90&&pl1.getScore()<=100&&pl1.getScore()-x<=90)
                 {
 //                    player1.setCenterX(x1=x1+72*(90-sum1+x));
 //                    player1.setCenterY(y1=y1-45);
 //                    player1.setCenterX(x1=x1-72*(sum1-91));
 //                    player1.toFront();
-                    for(int i=0; i<90-sum1+x; i++)
+                    for(int i=0; i<90-pl1.getScore()+x; i++)
                     {
                         av1.setX(x1=x1+72);
                     }
                     av1.setY(y1=y1-40);
-                    for(int i=0; i<sum1-91; i++)
+                    for(int i=0; i<pl1.getScore()-91; i++)
                     {
                         av1.setX(x1=x1-72);
                     }
-                    if(sum1==91)
+                    if(pl1.getScore()==91)
                     {
 //                        player1.setCenterY(y1=y1+170);
                         for(int i=0; i<4; i++)
                         {
                             av1.setY(y1=y1+42.5);
                         }
-                        sum1=51;
+
+                        pl1.setScore(51);
                     }
-                    if(sum1==95)
+                    if(pl1.getScore()==95)
                     {
 //                        player1.setCenterY(y1=y1+85);
 //                        player1.setCenterX(x1=x1-72);
@@ -709,15 +729,16 @@ public class controller {
                             av1.setX(x1=x1-36);
                             av1.setY(y1=y1+45);
                         }
-                        sum1=76;
+
+                        pl1.setScore(76);
                     }
 //                    player1.toFront();
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1<100)
+                else if(pl1.getScore()<100)
                 {
 //                    player1.setCenterX(x1=x1-72*x);
 //                    player1.toFront();
@@ -725,7 +746,7 @@ public class controller {
                     {
                         av1.setX(x1=x1-72);
                     }
-                    if(sum1==95)
+                    if(pl1.getScore()==95)
                     {
 //                        player1.setCenterY(y1=y1+85);
 //                        player1.setCenterX(x1=x1-72);
@@ -734,9 +755,10 @@ public class controller {
                             av1.setX(x1=x1-36);
                             av1.setY(y1=y1+45);
                         }
-                        sum1=76;
+
+                        pl1.setScore(76);
                     }
-                    if(sum1==99)
+                    if(pl1.getScore()==99)
                     {
 //                        player1.setCenterY(y1=y1+360);
 //                        player1.setCenterX(x1=x1+72*8);
@@ -745,31 +767,32 @@ public class controller {
                             av1.setY(y1=y1+48);
                             av1.setX(x1=x1+72.5);
                         }
-                        sum1=10;
+
+                        pl1.setScore(10);
                     }
 //                    player1.toFront();
-                    p1.setText("PLAYER 1: "+sum1);
+                    p1.setText("PLAYER 1: "+pl1.getScore());
                     tp1++;
-                    p1turn = false;
-                    p2turn = true;
+                    pl1.setTurn(false);
+                    pl2.setTurn(true);
                 }
-                else if(sum1>=100)
+                else if(pl1.getScore()>=100)
                 {
 //                    player1.setCenterX(x1=x1-72*(100-sum1+x));
 //                    player1.toFront();
-                    for(int i=0; i<100-sum1+x; i++)
+                    for(int i=0; i<100-pl1.getScore()+x; i++)
                     {
                         av1.setX(x1=x1-72);
                     }
                     tp1++;
                     p1.setText("PLAYER 1: "+100);
                     l.setText("Player 1 Won!");
-                    p1turn = false;
-                    p2turn = false;
+                    pl1.setTurn(false);
+                    pl2.setTurn(false);
                 }
             }
         }
-        else if(p2turn)
+        else if(pl2.isTurn())
         {
             if(tp2==0&&x==1)
             {
@@ -779,20 +802,22 @@ public class controller {
                 av2.setY(y2=y2-60);
                 av2.setX(x2=x2+5);
                 tp2++;
-                p2turn=false;
-                p1turn=true;
-                sum2=sum2+x;
-                p2.setText("PLAYER 2: "+sum2);
+                pl2.setTurn(false);
+                pl1.setTurn(true);
+//                sum2=sum2+x;
+                pl2.setScore(pl2.getScore()+x);
+                p2.setText("PLAYER 2: "+pl2.getScore());
             }
             else if(tp2==0&&x>1)
             {
-                p2turn=false;
-                p1turn=true;
+                pl2.setTurn(false);
+                pl1.setTurn(true);
             }
             else if(tp2>0)
             {
-                sum2=sum2+x;
-                if(sum2<=10)
+//                sum2=sum2+x;
+                pl2.setScore(pl2.getScore()+x);
+                if(pl2.getScore()<=10)
                 {
 //                    player2.setCenterX(x2 = x2 + 72 * x);
 //                    player2.toFront();
@@ -800,7 +825,7 @@ public class controller {
                     {
                         av2.setX(x2=x2+72);
                     }
-                    if(sum2==4)
+                    if(pl2.getScore()==4)
                     {
 //                        player2.setCenterX(x2 = x2 + 72);
 //                        player2.setCenterY(y2 = y2 - 170);
@@ -809,9 +834,10 @@ public class controller {
                             av2.setX(x2=x2+18);
                             av2.setY(y2=y2-42);
                         }
-                        sum2=45;
+//                        sum2=45;
+                        pl2.setScore(45);
                     }
-                    if(sum2==6)
+                    if(pl2.getScore()==6)
                     {
 //                        player2.setCenterX(x2 = x2 - 72);
 //                        player2.setCenterY(y2 = y2 - 75);
@@ -820,35 +846,36 @@ public class controller {
                             av2.setX(x2=x2-36);
                             av2.setY(y2=y2-40);
                         }
-                        sum2=25;
+//                        sum2=25;
+                        pl2.setScore(25);
                     }
 //                    player2.toFront();
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2>10&&sum2<=20&&sum2-x<=10)
+                else if(pl2.getScore()>10&&pl2.getScore()<=20&&pl2.getScore()-x<=10)
                 {
 //                    player2.setCenterX(x2=x2+72*(10-sum2+x));
 //                    player2.setCenterY(y2=y2-45);
 //                    player2.setCenterX(x2=x2-72*(sum2-11));
 //                    player2.toFront();
-                    for(int i=0; i<10-sum2+x; i++)
+                    for(int i=0; i<10-pl2.getScore()+x; i++)
                     {
                         av2.setX(x2=x2+72);
                     }
                     av2.setY(y2=y2-45);
-                    for(int i=0; i<sum2-11; i++)
+                    for(int i=0; i<pl2.getScore()-11; i++)
                     {
                         av2.setX(x2=x2-72);
                     }
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2<=20)
+                else if(pl2.getScore()<=20)
                 {
 //                    player2.setCenterX(x2=x2-72*x);
 //                    player2.toFront();
@@ -856,34 +883,34 @@ public class controller {
                     {
                         av2.setX(x2=x2-72);
                     }
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2>20&&sum2<=30&&sum2-x<=20)
+                else if(pl2.getScore()>20&&pl2.getScore()<=30&&pl2.getScore()-x<=20)
                 {
 //                    player2.setCenterX(x2=x2-72*(20-sum2+x));
 //                    player2.setCenterY(y2=y2-40);
 //                    player2.setCenterX(x2=x2+72*(sum2-21));
 //                    player2.toFront();
-                    for(int i=0; i<20-sum2+x; i++)
+                    for(int i=0; i<20-pl2.getScore()+x; i++)
                     {
                         av2.setX(x2=x2-72);
 
                     }
                     av2.setY(y2=y2-40);
-                    for(int i=0; i<sum2-21; i++)
+                    for(int i=0; i<pl2.getScore()-21; i++)
                     {
                         av2.setX(x2=x2+72);
 
                     }
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2<=30)
+                else if(pl2.getScore()<=30)
                 {
 //                    player2.setCenterX(x2=x2+72*x);
 //                    player2.toFront();
@@ -891,27 +918,27 @@ public class controller {
                     {
                         av2.setX(x2=x2+72);
                     }
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2>30&&sum2<=40&&sum2-x<=30)
+                else if(pl2.getScore()>30&&pl2.getScore()<=40&&pl2.getScore()-x<=30)
                 {
 //                    player2.setCenterX(x2=x2+72*(30-sum2+x));
 //                    player2.setCenterY(y2=y2-40);
 //                    player2.setCenterX(x2=x2-72*(sum2-31));
 //                    player2.toFront();
-                    for(int i=0; i<30-sum2+x; i++)
+                    for(int i=0; i<30-pl2.getScore()+x; i++)
                     {
                         av2.setX(x2=x2+72);
                     }
                     av2.setY(y2=y2-40);
-                    for(int i=0; i<sum2-31; i++)
+                    for(int i=0; i<pl2.getScore()-31; i++)
                     {
                         av2.setX(x2=x2-72);
                     }
-                    if(sum2==32)
+                    if(pl2.getScore()==32)
                     {
 //                        player2.setCenterX(x2=x2-72*4);
 //                        player2.setCenterY(y2 = y2 + 130);
@@ -920,15 +947,16 @@ public class controller {
                             av2.setX(x2=x2-72);
                             av2.setY(y2=y2+30);
                         }
-                        sum2=5;
+//                        sum2=5;
+                        pl2.setScore(5);
                     }
 //                    player2.toFront();
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2<=40)
+                else if(pl2.getScore()<=40)
                 {
 //                    player2.setCenterX(x2=x2-72*x);
 //                    player2.toFront();
@@ -936,7 +964,7 @@ public class controller {
                     {
                         av2.setX(x2=x2-72);
                     }
-                    if(sum2==40)
+                    if(pl2.getScore()==40)
                     {
 //                        player2.setCenterX(x2=x2+72*3);
 //                        player2.setCenterY(y2 = y2 - 170);
@@ -945,9 +973,10 @@ public class controller {
                             av2.setX(x2=x2+72);
                             av2.setY(y2=y2-58);
                         }
-                        sum2=77;
+//                        sum2=77;
+                        pl2.setScore(77);
                     }
-                    if(sum2==32)
+                    if(pl2.getScore()==32)
                     {
 //                        player2.setCenterX(x2=x2-72*4);
 //                        player2.setCenterY(y2 = y2 + 130);
@@ -956,30 +985,31 @@ public class controller {
                             av2.setX(x2=x2-72);
                             av2.setY(y2=y2+30);
                         }
-                        sum2=5;
+//                        sum2=5;
+                        pl2.setScore(5);
                     }
 //                    player2.toFront();
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2>40&&sum2<=50&&sum2-x<=40)
+                else if(pl2.getScore()>40&&pl2.getScore()<=50&&pl2.getScore()-x<=40)
                 {
 //                    player2.setCenterX(x2=x2-72*(40-sum2+x));
 //                    player2.setCenterY(y2=y2-40);
 //                    player2.setCenterX(x2=x2+72*(sum2-41));
 //                    player2.toFront();
-                    for(int i=0; i<40-sum2+x; i++)
+                    for(int i=0; i<40-pl2.getScore()+x; i++)
                     {
                         av2.setX(x2=x2-72);
                     }
                     av2.setY(y2=y2-44);
-                    for(int i=0; i<sum2-41; i++)
+                    for(int i=0; i<pl2.getScore()-41; i++)
                     {
                         av2.setX(x2=x2+72);
                     }
-                    if(sum2==43)
+                    if(pl2.getScore()==43)
                     {
 //                        player2.setCenterX(x2=x2+72);
 //                        player2.setCenterY(y2=y2+120);
@@ -988,15 +1018,16 @@ public class controller {
                             av2.setX(x2=x2+18);
                             av2.setY(y2=y2+30);
                         }
-                        sum2=17;
+//                        sum2=17;
+                        pl2.setScore(17);
                     }
 //                    player2.toFront();
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2<=50)
+                else if(pl2.getScore()<=50)
                 {
 //                    player2.setCenterX(x2=x2+72*x);
 //                    player2.toFront();
@@ -1004,7 +1035,7 @@ public class controller {
                     {
                         av2.setX(x2=x2+72);
                     }
-                    if(sum2==47)
+                    if(pl2.getScore()==47)
                     {
 //                        player2.setCenterX(x2=x2-72);
 //                        player2.setCenterY(y2=y2-85);
@@ -1013,9 +1044,10 @@ public class controller {
                             av2.setX(x2=x2-36);
                             av2.setY(y2=y2-43);
                         }
-                        sum2=66;
+//                        sum2=66;
+                        pl2.setScore(66);
                     }
-                    if(sum2==50)
+                    if(pl2.getScore()==50)
                     {
 //                        player2.setCenterX(x2=x2-72*2);
 //                        player2.setCenterY(y2=y2-212);
@@ -1024,9 +1056,10 @@ public class controller {
                             av2.setX(x2=x2-48);
                             av2.setY(y2=y2-73);
                         }
-                        sum2=93;
+//                        sum2=93;
+                        pl2.setScore(93);
                     }
-                    if(sum2==43)
+                    if(pl2.getScore()==43)
                     {
 //                        player2.setCenterX(x2=x2+72);
 //                        player2.setCenterY(y2=y2+120);
@@ -1035,30 +1068,31 @@ public class controller {
                             av2.setX(x2=x2+18);
                             av2.setY(y2=y2+30);
                         }
-                        sum2=17;
+//                        sum2=17;
+                        pl2.setScore(17);
                     }
 //                    player2.toFront();
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2>50&&sum2<=60&&sum2-x<=50)
+                else if(pl2.getScore()>50&&pl2.getScore()<=60&&pl2.getScore()-x<=50)
                 {
 //                    player2.setCenterX(x2=x2+72*(50-sum2+x));
 //                    player2.setCenterY(y2=y2-42);
 //                    player2.setCenterX(x2=x2-72*(sum2-51));
 //                    player2.toFront();
-                    for(int i=0; i<50-sum2+x; i++)
+                    for(int i=0; i<50-pl2.getScore()+x; i++)
                     {
                         av2.setX(x2=x2+72);
                     }
                     av2.setY(y2=y2-40);
-                    for(int i=0; i<sum2-51; i++)
+                    for(int i=0; i<pl2.getScore()-51; i++)
                     {
                         av2.setX(x2=x2-72);
                     }
-                    if(sum2==52)
+                    if(pl2.getScore()==52)
                     {
 //                        player2.setCenterX(x2=x2+72);
 //                        player2.setCenterY(y2=y2+170);
@@ -1070,12 +1104,12 @@ public class controller {
                         sum1=11;
                     }
 //                    player2.toFront();
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2<=60)
+                else if(pl2.getScore()<=60)
                 {
 //                    player2.setCenterX(x2=x2-72*x);
 //                    player2.toFront();
@@ -1083,7 +1117,7 @@ public class controller {
                     {
                         av2.setX(x2=x2-72);
                     }
-                    if(sum2==52)
+                    if(pl2.getScore()==52)
                     {
 //                        player2.setCenterX(x2=x2+72);
 //                        player2.setCenterY(y2=y2+170);
@@ -1092,39 +1126,41 @@ public class controller {
                             av2.setX(x2=x2+18);
                             av2.setY(y2=y2+42.5);
                         }
-                        sum2=11;
+//                        sum2=11;
+                        pl2.setScore(11);
                     }
-                    if(sum2==57)
+                    if(pl2.getScore()==57)
                     {
 //                        player2.setCenterY(y2=y2+120);
                         for(int i=0; i<3; i++)
                         {
                             av2.setY(y2=y2+42);
                         }
-                        sum2=24;
+//                        sum2=24;
+                        pl2.setScore(24);
                     }
 //                    player2.toFront();
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2>60&&sum2<=70&&sum2-x<=60)
+                else if(pl2.getScore()>60&&pl2.getScore()<=70&&pl2.getScore()-x<=60)
                 {
 //                    player2.setCenterX(x2=x2-72*(60-sum2+x));
 //                    player2.setCenterY(y2=y2-40);
 //                    player2.setCenterX(x2=x2+72*(sum2-61));
 //                    player2.toFront();
-                    for(int i=0; i<60-sum2+x; i++)
+                    for(int i=0; i<60-pl2.getScore()+x; i++)
                     {
                         av2.setX(x2=x2-72);
                     }
                     av2.setY(y2=y2-40);
-                    for(int i=0; i<sum2-61; i++)
+                    for(int i=0; i<pl2.getScore()-61; i++)
                     {
                         av2.setX(x2=x2+72);
                     }
-                    if(sum2==61)
+                    if(pl2.getScore()==61)
                     {
 //                        player2.setCenterX(x2=x2+72*2);
 //                        player2.setCenterY(y2=y2+120);
@@ -1133,24 +1169,26 @@ public class controller {
                             av2.setX(x2=x2+48);
                             av2.setY(y2=y2-44);
                         }
-                        sum2=98;
+//                        sum2=98;
+                        pl2.setScore(98);
                     }
-                    if(sum2==62)
+                    if(pl2.getScore()==62)
                     {
 //                        player2.setCenterY(y2=y2+170);
                         for(int i=0; i<4; i++)
                         {
                             av2.setY(y2=y2+42.5);
                         }
-                        sum2=22;
+//                        sum2=22;
+                        pl2.setScore(22);
                     }
 //                    player2.toFront();
                     p2.setText("PLAYER 2: "+sum2);
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2<=70)
+                else if(pl2.getScore()<=70)
                 {
 //                    player2.setCenterX(x2=x2+72*x);
 //                    player2.toFront();
@@ -1158,7 +1196,7 @@ public class controller {
                     {
                         av2.setX(x2=x2+72);
                     }
-                    if(sum2==68)
+                    if(pl2.getScore()==68)
                     {
 //                        player2.setCenterX(x2=x2-72);
 //                        player2.setCenterY(y2=y2-85);
@@ -1167,7 +1205,8 @@ public class controller {
                             av2.setX(x2=x2-36);
                             av2.setY(y2=y2-45);
                         }
-                        sum2=87;
+//                        sum2=87;
+                        pl2.setScore(87);
                     }
                     if(sum2==62)
                     {
@@ -1176,35 +1215,36 @@ public class controller {
                         {
                             av2.setY(y2=y2+42.5);
                         }
-                        sum2=22;
+//                        sum2=22;
+                        pl2.setScore(22);
                     }
 //                    player2.toFront();
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2>70&&sum2<=80&&sum2-x<=70)
+                else if(pl2.getScore()>70&&pl2.getScore()<=80&&pl2.getScore()-x<=70)
                 {
 //                    player2.setCenterX(x2=x2+72*(70-sum2+x));
 //                    player2.setCenterY(y2=y2-45);
 //                    player2.setCenterX(x2=x2-72*(sum2-71));
 //                    player2.toFront();
-                    for(int i=0; i<70-sum2+x; i++)
+                    for(int i=0; i<70-pl2.getScore()+x; i++)
                     {
                         av2.setX(x2=x2+72);
                     }
                     av2.setY(y2=y2-45);
-                    for(int i=0; i<sum2-71; i++)
+                    for(int i=0; i<pl2.getScore()-71; i++)
                     {
                         av2.setX(x2=x2-72);
                     }
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2<=80)
+                else if(pl2.getScore()<=80)
                 {
 //                    player2.setCenterX(x2=x2-72*x);
 //                    player2.toFront();
@@ -1212,32 +1252,32 @@ public class controller {
                     {
                         av2.setX(x2=x2-72);
                     }
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2>80&&sum2<=90&&sum2-x<=80)
+                else if(pl2.getScore()>80&&pl2.getScore()<=90&&pl2.getScore()-x<=80)
                 {
 //                    player2.setCenterX(x2=x2-72*(80-sum2+x));
 //                    player2.setCenterY(y2=y2-45);
 //                    player2.setCenterX(x2=x2+72*(sum2-81));
 //                    player2.toFront();
-                    for(int i=0; i<80-sum2+x; i++)
+                    for(int i=0; i<80-pl2.getScore()+x; i++)
                     {
                         av2.setX(x2=x2-72);
                     }
                     av2.setY(y2=y2-44);
-                    for(int i=0; i<sum2-81; i++)
+                    for(int i=0; i<pl2.getScore()-81; i++)
                     {
                         av2.setX(x2=x2+72);
                     }
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2<=90)
+                else if(pl2.getScore()<=90)
                 {
 //                    player2.setCenterX(x2=x2+72*x);
 //                    player2.toFront();
@@ -1245,36 +1285,37 @@ public class controller {
                     {
                         av2.setX(x2=x2+72);
                     }
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2>90&&sum2<=100&&sum2-x<=90)
+                else if(pl2.getScore()>90&&pl2.getScore()<=100&&pl2.getScore()-x<=90)
                 {
 //                    player2.setCenterX(x2=x2+72*(90-sum2+x));
 //                    player2.setCenterY(y2=y2-45);
 //                    player2.setCenterX(x2=x2-72*(sum2-91));
 //                    player2.toFront();
-                    for(int i=0; i<90-sum2+x; i++)
+                    for(int i=0; i<90-pl2.getScore()+x; i++)
                     {
                         av2.setX(x2=x2+72);
                     }
                     av2.setY(y2=y2-40);
-                    for(int i=0; i<sum2-91; i++)
+                    for(int i=0; i<pl2.getScore()-91; i++)
                     {
                         av2.setX(x2=x2-72);
                     }
-                    if(sum2==91)
+                    if(pl2.getScore()==91)
                     {
 //                        player2.setCenterY(y2=y2+170);
                         for(int i=0; i<4; i++)
                         {
                             av2.setY(y2=y2+42.5);
                         }
-                        sum2=51;
+//                        sum2=51;
+                        pl2.setScore(51);
                     }
-                    if(sum2==95)
+                    if(pl2.getScore()==95)
                     {
 //                        player2.setCenterY(y2=y2+85);
 //                        player2.setCenterX(x2=x2-72);
@@ -1283,15 +1324,16 @@ public class controller {
                             av2.setX(x2=x2-36);
                             av2.setY(y2=y2+45);
                         }
-                        sum2=76;
+//                        sum2=76;
+                        pl2.setScore(76);
                     }
 //                    player2.toFront();
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2<100)
+                else if(pl2.getScore()<100)
                 {
 //                    player2.setCenterX(x2=x2-72*x);
 //                    player2.toFront();
@@ -1299,7 +1341,7 @@ public class controller {
                     {
                         av2.setX(x2=x2-72);
                     }
-                    if(sum2==95)
+                    if(pl2.getScore()==95)
                     {
 //                        player2.setCenterY(y2=y2+85);
 //                        player2.setCenterX(x2=x2-72);
@@ -1308,9 +1350,10 @@ public class controller {
                             av2.setX(x2=x2-36);
                             av2.setY(y2=y2+45);
                         }
-                        sum2=76;
+//                        sum2=76;
+                        pl2.setScore(76);
                     }
-                    if(sum2==99)
+                    if(pl2.getScore()==99)
                     {
 //                        player2.setCenterY(y2=y2+360);
 //                        player2.setCenterX(x2=x2+72*8);
@@ -1319,47 +1362,30 @@ public class controller {
                             av2.setY(y2=y2+48);
                             av2.setX(x2=x2+72.5);
                         }
-                        sum2=10;
+//                        sum2=10;
+                        pl2.setScore(10);
                     }
 //                    player2.toFront();
-                    p2.setText("PLAYER 2: "+sum2);
+                    p2.setText("PLAYER 2: "+pl2.getScore());
                     tp2++;
-                    p2turn = false;
-                    p1turn = true;
+                    pl2.setTurn(false);
+                    pl1.setTurn(true);
                 }
-                else if(sum2>=100)
+                else if(pl2.getScore()>=100)
                 {
 //                    player2.setCenterX(x2=x2-72*(100-sum2+x));
 //                    player2.toFront();
-                    for(int i=0; i<100-sum2+x; i++)
+                    for(int i=0; i<100-pl2.getScore()+x; i++)
                     {
                         av2.setX(x2=x2-72);
                     }
                     tp2++;
                     p2.setText("PLAYER 2: "+100);
                     l.setText("Player 2 Won!");
-                    p1turn = false;
-                    p2turn = false;
+                    pl2.setTurn(false);
+                    pl1.setTurn(false);
                 }
             }
         }
     }
 }
-//class player{
-//    private int score;
-//    private boolean turn;
-//    private final ImageView img;
-//    player(int s,boolean t,ImageView img){
-//        this.score=s;
-//        this.turn=t;
-//        this.img=img;
-//    }
-//
-//    public void setScore(int score) {
-//        this.score = score;
-//    }
-//
-//    public void setTurn(boolean turn) {
-//        this.turn = turn;
-//    }
-//}
