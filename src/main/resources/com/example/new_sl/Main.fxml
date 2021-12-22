@@ -17,7 +17,7 @@
             <Image url="@ba3.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="tap" layoutX="347.0" layoutY="635.0" prefHeight="55.0" prefWidth="150.0" style="-fx-border-color: white; -fx-border-radius: 5;" text="(Tap on Dice to Play)" textFill="WHITE" visible="false">
+      <Label fx:id="tap" layoutX="252.0" layoutY="633.0" prefHeight="55.0" prefWidth="337.0" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font>
@@ -69,7 +69,10 @@
             <Font name="Algerian" size="26.0" />
          </font>
       </Label>
-      <Button id="startgame" fx:id="startgame" layoutX="353.0" layoutY="310.0" mnemonicParsing="false" onAction="#startgame" prefHeight="70.0" prefWidth="180.0" style="-fx-background-color: brown; -fx-border-color: white; -fx-border-radius: 5; -fx-border-width: 5; -fx-background-image: 1;" styleClass="startgame" stylesheets="@back.css" text="Start Game" />
+      <Button id="startgame" fx:id="startgame" layoutX="353.0" layoutY="310.0" mnemonicParsing="false" onAction="#startgame" prefHeight="70.0" prefWidth="180.0" style="-fx-background-color: brown; -fx-border-color: white; -fx-border-radius: 5; -fx-border-width: 5; -fx-background-image: 1;" styleClass="startgame" stylesheets="@back.css" text="Start Game" textAlignment="CENTER" textFill="WHITE" underline="true">
+         <font>
+            <Font name="Algerian" size="22.0" />
+         </font></Button>
       <ImageView fx:id="brc" fitHeight="33.0" fitWidth="50.0" layoutX="2.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@ba3.jpg" />
@@ -103,6 +106,40 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+            </Button>
+         </children>
+      </Group>
+      <ImageView fx:id="c1" fitHeight="102.0" fitWidth="151.0" layoutX="268.0" layoutY="543.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images-removebg-preview%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="c2" fitHeight="102.0" fitWidth="151.0" layoutX="473.0" layoutY="540.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../images-removebg-preview%20(1).png" />
+         </image>
+      </ImageView>
+      <Group fx:id="wing" layoutX="229.0" layoutY="160.0" visible="false">
+         <children>
+            <ImageView fx:id="wbg" fitHeight="313.0" fitWidth="487.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@winbg.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="wtrpy" fitHeight="212.0" fitWidth="221.0" layoutX="138.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@istockphoto-1176397624-612x612-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="wlabel" alignment="CENTER" layoutX="158.0" layoutY="184.0" prefHeight="40.0" prefWidth="171.0" text="wn" textAlignment="CENTER" textFill="#fffdfd" underline="true" visible="false">
+               <font>
+                  <Font name="Algerian" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="gfinish" alignment="CENTER" contentDisplay="CENTER" layoutX="113.0" layoutY="256.0" mnemonicParsing="false" onAction="#exit1" prefHeight="25.0" prefWidth="262.0" style="-fx-border-color: gold; -fx-border-width: 5; -fx-border-radius: 4;" text="EXIT" textAlignment="CENTER">
+               <font>
+                  <Font name="Algerian" size="19.0" />
+               </font>
             </Button>
          </children>
       </Group>

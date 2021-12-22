@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c130fa5-1d61-4095-949b-146aecdcf3a0" name="Changes" comment="player and die class added">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/new_sl/gamechars.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/new_sl/gameobjstr.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/new_sl/inter.java" afterDir="false" />
+    <list default="true" id="6c130fa5-1d61-4095-949b-146aecdcf3a0" name="Changes" comment="game objects">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/new_sl/controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/new_sl/controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/new_sl/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/new_sl/Main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/new_sl/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/new_sl/Main.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/new_sl/controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/new_sl/controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/new_sl/gameobjstr.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/new_sl/gameobjstr.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +52,7 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\sumit\OneDrive\Desktop\new_sl\src\main\resources\com\example\new_sl" />
+      <recent name="C:\Users\sumit\OneDrive\Desktop\new_sl\src\main\resources" />
     </key>
   </component>
   <component name="RunManager" selected="Application.HelloApplication">
@@ -96,8 +97,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.gameobjstr" />
         <item itemvalue="Application.HelloApplication" />
+        <item itemvalue="Application.gameobjstr" />
         <item itemvalue="Application.die" />
       </list>
     </recent_temporary>
@@ -153,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640197274236</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="game objects">
+      <created>1640199569492</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1640199569492</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,6 +181,7 @@
     <MESSAGE value="styling" />
     <MESSAGE value="moving debbuged" />
     <MESSAGE value="player and die class added" />
-    <option name="LAST_COMMIT_MESSAGE" value="player and die class added" />
+    <MESSAGE value="game objects" />
+    <option name="LAST_COMMIT_MESSAGE" value="game objects" />
   </component>
 </project>

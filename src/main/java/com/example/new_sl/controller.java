@@ -2,6 +2,7 @@ package com.example.new_sl;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,7 +23,21 @@ public class controller {
     private die D=new die();
     private gameobjstr<gamechars> store;
     @FXML
+    private ImageView wbg;
+    @FXML
+    private ImageView wtrpy;
+    @FXML
+    private Button gfinish;
+    @FXML
+    private Label wlabel;
+    @FXML private Group wing;
+    @FXML
     private Button dback;
+    @FXML
+    private ImageView c1;
+    @FXML
+    private ImageView c2;
+
     @FXML
     private Button exit;
     @FXML
@@ -90,6 +105,32 @@ public class controller {
         String s="s"+Integer.toString(c);
         return new snake(x,y,s);
     }
+    private void gameover(boolean w1,boolean w2){
+
+        p1.setDisable(true);
+        p2.setDisable(true);
+        l.setDisable(true);
+        img.setDisable(true);
+        dice.setDisable(true);
+        rect.setDisable(true);
+        l1.setDisable(true);
+        l2.setDisable(true);
+        button.setDisable(true);
+        av1.setDisable(true);
+        av2.setDisable(true);
+        tap.setDisable(true);
+        grp.setDisable(true);
+        wing.setVisible(true);
+        wbg.setVisible(true);
+        wtrpy.setVisible(true);
+        wlabel.setVisible(true);
+        if(w1){
+            wlabel.setText("Player 1 won");
+        }
+        else if(w2){
+            wlabel.setText("Player 2 won");
+        }
+    }
     private void create(){
         store=new gameobjstr<>();
         int c=0;
@@ -155,6 +196,10 @@ public class controller {
     }
     public void startgame(ActionEvent e){
 //        System.out.println(av1);
+        create();
+        c1.setVisible(true);
+        tap.setText("Tap on dice");
+        tap.setAlignment(Pos.CENTER);
         bkbtn.setVisible(true);
         p1.setVisible(true);
         p2.setVisible(true);
@@ -182,6 +227,8 @@ public class controller {
             p2.setDisable(false);
             l1.setDisable(true);
             p1.setDisable(true);
+            c1.setVisible(false);
+            c2.setVisible(true);
         }
         else {
 
@@ -189,10 +236,13 @@ public class controller {
             p1.setDisable(false);
             l2.setDisable(true);
             p2.setDisable(true);
+            c1.setVisible(true);
+            c2.setVisible(false);
         }
     }
     public void move(ActionEvent e) throws InterruptedException {
         show(pl1.isTurn(), pl2.isTurn());
+        tap.setText("Waiting for game object encounter");
         int x = D.rolldie();
         l.setText("Number = "+Integer.toString(x));
         Image im=new Image("file:src\\main\\resources\\com\\example\\new_sl\\1d.jpg");
@@ -269,6 +319,7 @@ public class controller {
                             av1.setY(y1=y1-42);
 
                         }
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(45);
                     }
                     if(pl1.getScore()==6)
@@ -281,6 +332,8 @@ public class controller {
                             av1.setY(y1=y1-40);
 
                         }
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
+
                         pl1.setScore(25);
                     }
 //                    player1.toFront();
@@ -384,6 +437,8 @@ public class controller {
                             av1.setX(x1=x1-72);
                             av1.setY(y1=y1+30);
                         }
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
+
 
                         pl1.setScore(5);
                     }
@@ -411,6 +466,7 @@ public class controller {
                             av1.setY(y1=y1-58);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(77);
                     }
                     if(pl1.getScore()==32)
@@ -423,6 +479,7 @@ public class controller {
                             av1.setY(y1=y1+30);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(5);
                     }
 //                    player1.toFront();
@@ -456,6 +513,7 @@ public class controller {
                             av1.setY(y1=y1+30);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(17);
                     }
 //                    player1.toFront();
@@ -482,6 +540,7 @@ public class controller {
                             av1.setY(y1=y1-43);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(66);
                     }
                     if(pl1.getScore()==50)
@@ -494,6 +553,7 @@ public class controller {
                             av1.setY(y1=y1-73);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(93);
                     }
                     if(pl1.getScore()==43)
@@ -506,6 +566,7 @@ public class controller {
                             av1.setY(y1=y1+30);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(17);
                     }
 //                    player1.toFront();
@@ -539,6 +600,7 @@ public class controller {
                             av1.setY(y1=y1+42.5);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(11);
                     }
 //                    player1.toFront();
@@ -565,6 +627,7 @@ public class controller {
                             av1.setY(y1=y1+42.5);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(11);
                     }
                     if(pl1.getScore()==57)
@@ -575,6 +638,7 @@ public class controller {
                             av1.setY(y1=y1+42);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(24);
                     }
 //                    player1.toFront();
@@ -607,6 +671,7 @@ public class controller {
                             av1.setX(x1=x1+48);
                             av1.setY(y1=y1-44);
                         }
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(98);
                     }
                     if(pl1.getScore()==62)
@@ -617,6 +682,7 @@ public class controller {
                             av1.setY(y1=y1+42.5);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(22);
                     }
 //                    player1.toFront();
@@ -643,6 +709,7 @@ public class controller {
                             av1.setY(y1=y1-45);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(87);
                     }
                     if(pl1.getScore()==62)
@@ -653,6 +720,7 @@ public class controller {
                             av1.setY(y1=y1+42.5);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(22);
                     }
 //                    player1.toFront();
@@ -750,6 +818,7 @@ public class controller {
                             av1.setY(y1=y1+42.5);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(51);
                     }
                     if(pl1.getScore()==95)
@@ -762,6 +831,7 @@ public class controller {
                             av1.setY(y1=y1+45);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(76);
                     }
 //                    player1.toFront();
@@ -788,6 +858,7 @@ public class controller {
                             av1.setY(y1=y1+45);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(76);
                     }
                     if(pl1.getScore()==99)
@@ -800,6 +871,7 @@ public class controller {
                             av1.setX(x1=x1+72.5);
                         }
 
+                        tap.setText("Player 1 encounterd a "+store.getcname(pl1.getScore())+" , moved to "+Integer.toString(store.goneto(pl1.getScore())));
                         pl1.setScore(10);
                     }
 //                    player1.toFront();
@@ -818,9 +890,10 @@ public class controller {
                     }
                     tp1++;
                     p1.setText("PLAYER 1: "+100);
-                    l.setText("Player 1 Won!");
+//                    l.setText("Player 1 Won!");
                     pl1.setTurn(false);
                     pl2.setTurn(false);
+                    gameover(true,false);
                 }
             }
         }
@@ -867,6 +940,8 @@ public class controller {
                             av2.setY(y2=y2-42);
                         }
 //                        sum2=45;
+
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(45);
                     }
                     if(pl2.getScore()==6)
@@ -879,6 +954,7 @@ public class controller {
                             av2.setY(y2=y2-40);
                         }
 //                        sum2=25;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(25);
                     }
 //                    player2.toFront();
@@ -980,6 +1056,7 @@ public class controller {
                             av2.setY(y2=y2+30);
                         }
 //                        sum2=5;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(5);
                     }
 //                    player2.toFront();
@@ -1006,6 +1083,7 @@ public class controller {
                             av2.setY(y2=y2-58);
                         }
 //                        sum2=77;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(77);
                     }
                     if(pl2.getScore()==32)
@@ -1018,6 +1096,7 @@ public class controller {
                             av2.setY(y2=y2+30);
                         }
 //                        sum2=5;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(5);
                     }
 //                    player2.toFront();
@@ -1051,6 +1130,7 @@ public class controller {
                             av2.setY(y2=y2+30);
                         }
 //                        sum2=17;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(17);
                     }
 //                    player2.toFront();
@@ -1077,6 +1157,7 @@ public class controller {
                             av2.setY(y2=y2-43);
                         }
 //                        sum2=66;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(66);
                     }
                     if(pl2.getScore()==50)
@@ -1089,6 +1170,7 @@ public class controller {
                             av2.setY(y2=y2-73);
                         }
 //                        sum2=93;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(93);
                     }
                     if(pl2.getScore()==43)
@@ -1101,6 +1183,8 @@ public class controller {
                             av2.setY(y2=y2+30);
                         }
 //                        sum2=17;
+
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(17);
                     }
 //                    player2.toFront();
@@ -1134,6 +1218,7 @@ public class controller {
                             av2.setY(y2=y2+42.5);
                         }
 //                        sum1=11;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl1.setScore(11);
                     }
 //                    player2.toFront();
@@ -1160,6 +1245,7 @@ public class controller {
                             av2.setY(y2=y2+42.5);
                         }
 //                        sum2=11;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(11);
                     }
                     if(pl2.getScore()==57)
@@ -1170,6 +1256,7 @@ public class controller {
                             av2.setY(y2=y2+42);
                         }
 //                        sum2=24;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(24);
                     }
 //                    player2.toFront();
@@ -1203,6 +1290,7 @@ public class controller {
                             av2.setY(y2=y2-44);
                         }
 //                        sum2=98;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(98);
                     }
                     if(pl2.getScore()==62)
@@ -1213,6 +1301,7 @@ public class controller {
                             av2.setY(y2=y2+42.5);
                         }
 //                        sum2=22;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(22);
                     }
 //                    player2.toFront();
@@ -1239,6 +1328,7 @@ public class controller {
                             av2.setY(y2=y2-45);
                         }
 //                        sum2=87;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(87);
                     }
                     if(pl2.getScore()==62)
@@ -1249,6 +1339,7 @@ public class controller {
                             av2.setY(y2=y2+42.5);
                         }
 //                        sum2=22;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(22);
                     }
 //                    player2.toFront();
@@ -1346,6 +1437,7 @@ public class controller {
                             av2.setY(y2=y2+42.5);
                         }
 //                        sum2=51;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(51);
                     }
                     if(pl2.getScore()==95)
@@ -1358,6 +1450,7 @@ public class controller {
                             av2.setY(y2=y2+45);
                         }
 //                        sum2=76;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(76);
                     }
 //                    player2.toFront();
@@ -1384,6 +1477,7 @@ public class controller {
                             av2.setY(y2=y2+45);
                         }
 //                        sum2=76;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(76);
                     }
                     if(pl2.getScore()==99)
@@ -1396,6 +1490,7 @@ public class controller {
                             av2.setX(x2=x2+72.5);
                         }
 //                        sum2=10;
+                        tap.setText("Player 2 encounterd a "+store.getcname(pl2.getScore())+" , moved to "+Integer.toString(store.goneto(pl2.getScore())));
                         pl2.setScore(10);
                     }
 //                    player2.toFront();
@@ -1414,9 +1509,10 @@ public class controller {
                     }
                     tp2++;
                     p2.setText("PLAYER 2: "+100);
-                    l.setText("Player 2 Won!");
+//                    l.setText("Player 2 Won!");
                     pl2.setTurn(false);
                     pl1.setTurn(false);
+                    gameover(false,true);
                 }
             }
         }
