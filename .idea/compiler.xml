@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Project" />
         <module name="new_sl" />
+        <module name="2020249_2020330_Sumit_Satyam_Project" />
       </profile>
     </annotationProcessing>
   </component>
